@@ -12,17 +12,25 @@ export class PeopleListComponent implements OnInit {
 
     existingPersons: Person[] = [];
 
-    @Output() eliminarPersona = new EventEmitter<Person>();
-    @Output() editarPersona = new EventEmitter<Person>();
+    @Output() deletePerson = new EventEmitter<Person>();
+    @Output() updatePerson = new EventEmitter<Person>();
 
-    constructor(private personService: PeopleService) { }
+    constructor(private people: PeopleService) { }
 
     ngOnInit(): void {
         this.getAllPersons();
     }
 
+    emitDelete(person: Person) {
+        this.deletePerson.emit(person);
+    }
+
+    emitUpdate(person: Person) {
+        this.updatePerson.emit(person);
+    }
+
     getAllPersons() {
-        this.personService.getPersons().subscribe({
+        this.people.getPersons().subscribe({
             next: (data) => {
                 this.existingPersons = data;
             },

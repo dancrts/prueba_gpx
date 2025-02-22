@@ -19,7 +19,8 @@ import { Person } from '@models/person.model';
 })
 export class PeopleComponent implements OnInit {
 
-    isModalOpen: boolean = false;
+    isDeleteModalOpen: boolean = false;
+    isFormModalOpen: boolean = false;
 
     constructor(private personService: PeopleService) { }
 
@@ -27,19 +28,43 @@ export class PeopleComponent implements OnInit {
 
     }
 
-
-    closeModal() {
-        this.isModalOpen = false;
+    handleUpdate(person: Person) {
+        console.log("Update person: ", person);
+        this.openFormModal();
     }
 
-    openModal() {
-        this.isModalOpen = true;
+    handleDelete(person: Person) {
+        console.log("Delete person: ", person);
+        this.openDeleteModal();
     }
 
-    clickOnOutside(event: MouseEvent) {
+    openFormModal() {
+        this.isFormModalOpen = true;
+    }
+
+    closeFormModal() {
+        this.isFormModalOpen = false;
+    }
+
+    openDeleteModal() {
+        this.isDeleteModalOpen = true;
+    }
+
+    closeDeleteModal() {
+        this.isDeleteModalOpen = false;
+    }
+
+    handleFormOutsideClick(event: MouseEvent) {
         const targetElement = event.target as HTMLElement;
         if (targetElement.classList.contains('modal')) {
-            this.closeModal();
+            this.closeFormModal();
+        }
+    }
+
+    handleDeleteOutsideClick(event: MouseEvent) {
+        const targetElement = event.target as HTMLElement;
+        if (targetElement.classList.contains('modal')) {
+            this.closeDeleteModal();
         }
     }
 

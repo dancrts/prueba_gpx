@@ -1,1 +1,61 @@
-<p>form works!</p>
+<form class="grid grid-cols-4 gap-4 w-md" [formGroup]="peopleForm" (ngSubmit)="handleFormSubmit()">
+    <div class="col-span-2 flex flex-col gap-2">
+        <label htmlFor="nombre">Nombre</label>
+        <input formControlName="nombre" type="text" [ngClass]="isFormInvalid('nombre') ? 'border-red-500 focus:ring-red-600 focus:border-red-600' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'" class="bg-gray-50 border text-gray-900 text-sm rounded-lg block w-full p-2.5">
+        @if (fieldHasError("nombre", "required")) {
+            <span class="text-red-500 text-sm">Por favor escriba un nombre</span>
+        }
+        @if (fieldHasError("nombre", "pattern")) {
+            <span class="text-red-500 text-sm">Por favor use solo letras y acentos</span>
+        }
+    </div>
+    <div class="col-span-2 flex flex-col gap-2">
+        <label htmlFor="apellido_paterno">Apellido Paterno</label>
+        <input formControlName="apellido_paterno" type="text" [ngClass]="isFormInvalid('apellido_paterno') ? 'border-red-500 focus:ring-red-600 focus:border-red-600' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        @if (fieldHasError("apellido_paterno", "required")) {
+            <span class="text-red-500 text-sm">Por favor escriba un apellido</span>
+        }
+        @if (fieldHasError("apellido_paterno", "pattern")) {
+            <span class="text-red-500 text-sm">Por favor use solo letras y acentos</span>
+        }
+    </div>
+    <div class="col-span-2 flex flex-col gap-2">
+        <label htmlFor="apellido_materno">Apellido Materno</label>
+        <input formControlName="apellido_materno" type="text" [ngClass]="isFormInvalid('apellido_materno') ? 'border-red-500 focus:ring-red-600 focus:border-red-600' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'"
+            apellido_paterno class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        @if (fieldHasError("apellido_materno", "required")) {
+            <span class="text-red-500 text-sm">Por favor escriba un apellido</span>
+        }
+        @if (fieldHasError("apellido_materno", "pattern")) {
+            <span class="text-red-500 text-sm">Por favor use solo letras y acentos</span>
+        }
+    </div>
+    <div class="col-span-2 flex flex-col gap-2">
+        <label htmlFor="telefono">Telefono</label>
+        <input formControlName="telefono" type="number" [ngClass]="isFormInvalid('telefono') ? 'border-red-500 focus:ring-red-600 focus:border-red-600' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        @if (fieldHasError("telefono", "required")) {
+            <span class="text-red-500 text-sm">Por favor escriba un numero de telefono</span>
+        }
+        @if (fieldHasError("telefono", "pattern")) {
+            <span class="text-red-500 text-sm">Por favor use solo numeros</span>
+        }
+    </div>
+    <div class="col-span-4 flex flex-col gap-2">
+        <label htmlFor="direccion">Direccion</label>
+        <textarea formControlName="direccion" rows="4" [ngClass]="isFormInvalid('direccion') ? 'border-red-500 focus:ring-red-600 focus:border-red-600' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+        @if (fieldHasError("direccion", "required")) {
+            <span class="text-red-500 text-sm">Por favor escriba una dirección</span>
+        }
+        @if (fieldHasError("direccion", "pattern")) {
+            <span class="text-red-500 text-sm">La direccion contiene caracteres no validos, por favor use solo letras, numeros, espacios, puntos y acentos.</span>
+        }
+    </div>
+    <div class="col-span-4 flex justify-end gap-4">
+        <button (click)="handleFormClose()"
+            class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-xl">Cancelar</button>
+        <button [disabled]="peopleForm.invalid" (click)="handleFormSubmit()"
+            class="bg-blue-600 disabled:bg-blue-400 disabled:hover:bg-blue-500 hover:bg-blue-900 text-white px-4 py-2 rounded-xl">Guardar</button>
+    </div>
+</form>
