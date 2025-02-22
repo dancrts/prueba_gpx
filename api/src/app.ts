@@ -1,13 +1,32 @@
-import express from 'express';
+import cors from "cors";
+import createHttpError, { isHttpError } from "http-errors";
+import express, { NextFunction, Request, Response } from 'express';
 
-const PORT = parseInt(process.env.PORT || '7000');
+//routes
+import PersonsRoutes from './routes/persons.routes';
 
+//Express
 const app = express();
 
-app.get('/', (_req, res) => {
-    res.send('Hello World');
-});
+app.use(cors());
+app.use(express.json());
 
-app.listen(PORT, () => {
-    console.log('Server is running on http://localhost:3000');
-});
+//Routes
+app.use("/api/v1/personas", PersonsRoutes);
+
+//Errores
+app.use((req: Request, res: Response, next: NextFunction) => {
+    next(createHttpError(404, "Endpoint no encontrado"))
+})
+app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
+    console.log(error)
+    let errorMessage = "Ha ocurrido un error";
+    let statusCode = 500;
+    if (isHttpError(error)) {
+        errorMessage = error.message
+        statusCode = error.statusCode
+    }
+    res.status(statusCode).json({ error: errorMessage })
+})
+
+export default app;
