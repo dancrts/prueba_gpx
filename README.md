@@ -1,8 +1,11 @@
-# Proyecto base :D
+# Proyecto de prueba tecnica para GPTX Global Primex
 
-Notas:
+En este proyecto se creó un API Rest y una aplicacion web usando NodeJS, Typescript, Express, PrismaORM, Angular19, NGRX19 y ZOD para validacion de tipos en backend.
 
-1. En caso de que quieras compilar sin tener typescript instalado localmente, usa `npx tsc --init`.
-2. En caso de que quieras correr el proyecto sin tener Nodemon: `npx tsc build` y luego `node ./dist/app.js`
-3. Recuerda eliminar esta parte del markdown y sobreescribirla
-4. Recuerda que si quieres react en la misma aplicacion, borra frontend y luego crealo con `npm create vite@latest`
+Instrucciones:
+
+1. Descargar el proyecto, acceder en dos terminales diferentes, una a la carpeta **"frontend"** y la otra a la carpeta **"api"**.
+Es NECESARIO tener instalado NodeJS para poder utilizar el proyecto
+2. Instalar dependencias en ambas carpetas mediante el comando `npm i`
+3. Una vez instaladas las dependencias de ambas carpetas: Para correr la parte de Backend, correr la version compilada con el comando `npm run start`. El codigo fuente se encuentra dentro de la carpeta SRC, mientras que el codigo compilado se encuentra dentro de la carpeta DIST.
+4. Para correr la parte de frontend, solo correr el comando `ng serve`
