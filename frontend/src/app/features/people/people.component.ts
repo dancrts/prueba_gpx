@@ -57,8 +57,6 @@ export class PeopleComponent {
     editPerson(person: Person) {
         this.peopleService.updatePerson(person).subscribe({
             next: (data) => {
-                console.log("Person updated: ", data);
-
                 this.store.dispatch(removeUpdatePerson());
             },
             error: (error) => {
@@ -70,7 +68,7 @@ export class PeopleComponent {
     createPerson(person: Person) {
         this.peopleService.createPerson(person).subscribe({
             next: (data) => {
-                console.log("Person created: ", data);
+                //add notification service lul
             },
             error: (error) => {
                 console.log(error);
