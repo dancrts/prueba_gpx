@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { Person } from '@models/person.model';
 import { PeopleService } from '@services/people.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'people-list',
@@ -8,9 +9,11 @@ import { PeopleService } from '@services/people.service';
     templateUrl: './people-list.component.html',
     styleUrl: './people-list.component.scss'
 })
-export class PeopleListComponent implements OnInit {
+export class PeopleListComponent implements OnInit, OnDestroy {
 
     existingPersons: Person[] = [];
+
+    peopleSubscription!: Subscription;
 
     @Output() deletePerson = new EventEmitter<Person>();
     @Output() updatePerson = new EventEmitter<Person>();
@@ -19,6 +22,10 @@ export class PeopleListComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAllPersons();
+    }
+
+    ngOnDestroy(): void {
+        this.peopleSubscription.unsubscribe();
     }
 
     emitDelete(person: Person) {
@@ -32,11 +39,14 @@ export class PeopleListComponent implements OnInit {
     getAllPersons() {
         this.people.getPersons().subscribe({
             next: (data) => {
-                this.existingPersons = data;
+                this.people.peopleList.next(data);
             },
             error: (error) => {
-                console.log(error);
+                
             }
+        });;
+        this.peopleSubscription = this.people.peopleList.subscribe((persons) => {
+            this.existingPersons = persons;            
         });
     }
 }
