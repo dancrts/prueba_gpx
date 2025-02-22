@@ -2,26 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 //Components
-import { ListComponent } from './list/list.component';
-import { FormComponent } from './form/form.component';
+import { PeopleListComponent } from './people-list/people-list.component';
+import { PeopleFormComponent } from './people-form/people-form.component';
 
 //Services
-import { PersonsService } from '../services/persons.service';
+import { PeopleService } from '@services/people.service';
 
 //Models
-import { Person } from '../models/person.model';
+import { Person } from '@models/person.model';
 
 @Component({
-    selector: 'app-persons',
-    imports: [ListComponent, FormComponent, NgClass],
-    templateUrl: './persons.component.html',
-    styleUrl: './persons.component.scss'
+    selector: 'people',
+    imports: [PeopleListComponent, PeopleFormComponent, NgClass],
+    templateUrl: './people.component.html',
+    styleUrl: './people.component.scss'
 })
-export class PersonsComponent implements OnInit {
+export class PeopleComponent implements OnInit {
 
     isModalOpen: boolean = false;
 
-    constructor(private personService: PersonsService) { }
+    constructor(private personService: PeopleService) { }
 
     ngOnInit(): void {
 

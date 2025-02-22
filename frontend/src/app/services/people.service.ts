@@ -4,12 +4,14 @@ import { Injectable } from "@angular/core";
 //Models
 import { Person } from "../models/person.model";
 
+import { Environment } from "@env/environment";
+
 @Injectable({
     providedIn: 'root'
 })
-export class PersonsService {
+export class PeopleService {
 
-    url = 'http://localhost:3005/api/v1/personas';
+    url = Environment.api + '/personas';
 
     constructor(private http: HttpClient) { }
 

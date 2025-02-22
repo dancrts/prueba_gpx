@@ -1,21 +1,21 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Person } from '../../models/person.model';
-import { PersonsService } from '../../services/persons.service';
+import { Person } from '@models/person.model';
+import { PeopleService } from '@services/people.service';
 
 @Component({
-    selector: 'app-list',
+    selector: 'people-list',
     imports: [],
-    templateUrl: './list.component.html',
-    styleUrl: './list.component.scss'
+    templateUrl: './people-list.component.html',
+    styleUrl: './people-list.component.scss'
 })
-export class ListComponent implements OnInit {
+export class PeopleListComponent implements OnInit {
 
     existingPersons: Person[] = [];
 
     @Output() eliminarPersona = new EventEmitter<Person>();
     @Output() editarPersona = new EventEmitter<Person>();
 
-    constructor(private personService: PersonsService) { }
+    constructor(private personService: PeopleService) { }
 
     ngOnInit(): void {
         this.getAllPersons();

@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const PersonaSchema = z.object({
+export const PersonSchema = z.object({
     nombre: z.string({
         required_error: "Es necesario un nombre",
     }).regex(/^[a-zA-ZáéíóúÁÉÍÓÚ]+$/, "Solo se admiten letras en el nombre!"),
@@ -19,7 +19,7 @@ export const PersonaSchema = z.object({
     }).regex(/^[a-zA-Z0-9., áéíóúÁÉÍÓÚ]+$/, "La direccion debe de contener solo letras, numeros, espacios y puntos!")
 });
 
-export interface Persona {
+export interface Person {
     nombre: string;
     apellido_materno: string;
     apellido_paterno: string;

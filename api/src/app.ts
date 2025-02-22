@@ -3,7 +3,7 @@ import createHttpError, { isHttpError } from "http-errors";
 import express, { NextFunction, Request, Response } from 'express';
 
 //routes
-import PersonsRoutes from './routes/persons.routes';
+import PeopleRoutes from './routes/people.routes';
 
 //Express
 const app = express();
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 //Routes
-app.use("/api/v1/personas", PersonsRoutes);
+app.use("/api/v1/personas", PeopleRoutes);
 
 //Errores
 app.use((req: Request, res: Response, next: NextFunction) => {
