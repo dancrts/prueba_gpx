@@ -15,4 +15,5 @@ model Persona {
     direccion String
     telefono String @unique
     creado_en DateTime @default(now())
+    editado_en DateTime @default(now()) @updatedAt 
 }

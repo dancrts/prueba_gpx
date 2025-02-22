@@ -5,8 +5,9 @@ CREATE TABLE "Persona" (
     "apellido_materno" TEXT NOT NULL,
     "apellido_paterno" TEXT NOT NULL,
     "direccion" TEXT NOT NULL,
-    "telefono" INTEGER NOT NULL,
-    "creado_en" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+    "telefono" TEXT NOT NULL,
+    "creado_en" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "editado_en" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CreateIndex

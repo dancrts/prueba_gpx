@@ -8,7 +8,7 @@ export const crearPersona = async (persona: Persona) => {
     const personaExistente = await prisma.persona.findFirst({ where: { telefono: persona.telefono } })
 
     if (personaExistente) {
-        throw createHttpError(400, "Ya existe una persona con ese número de teléfono")
+        throw createHttpError(409, "Ya existe una persona con ese número de teléfono")
     }
 
     return await prisma.persona.create({ data: persona })
@@ -33,6 +33,14 @@ export const actualizarPersona = async (id: number, persona: Persona) => {
 
     if (!personaExistente) {
         throw createHttpError(404, "Persona no encontrada")
+    }
+
+    const telefonoExistente = await prisma.persona.findFirst({
+        where: { telefono: persona.telefono, NOT: { id } }
+    });
+
+    if (telefonoExistente) {
+        throw createHttpError(409, "El teléfono ya está en uso por otra persona");
     }
 
     return await prisma.persona.update({ where: { id }, data: persona })

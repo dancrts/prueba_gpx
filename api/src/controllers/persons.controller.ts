@@ -11,7 +11,7 @@ import { DefaultIDSchema } from "../schemas/id-default.schema";
 const obtenerID = (req: Request): number => {
     const personaId = DefaultIDSchema.safeParse(parseInt(req.params.id))
     if (!personaId.success || !personaId.data) {
-        throw createHttpError(400, personaId.error!.errors[0].message)
+        throw createHttpError(409, personaId.error!.errors[0].message)
     }
 
     return personaId.data
@@ -21,7 +21,7 @@ const obtenerDataPersona = (req: Request): Persona => {
     const resultadoPersona = PersonaSchema.safeParse(req.body)
 
     if (!resultadoPersona.success || !resultadoPersona.data) {
-        throw createHttpError(400, resultadoPersona.error!.errors[0].message)
+        throw createHttpError(409, resultadoPersona.error!.errors[0].message)
     }
 
     return resultadoPersona.data
