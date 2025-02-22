@@ -1,0 +1,9 @@
+<div class="p-4">
+    Está seguro que quiere borrar a {{selectedPersonText}}? Esta acción no se puede deshacer.
+</div>
+<div class="p-4 flex justify-end gap-4">
+    <button (click)="handleCancelDelete()"
+        class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-xl">Cancelar</button>
+    <button (click)="handleDelete()"
+        class="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded-xl">Borrar</button>
+</div>

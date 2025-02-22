@@ -3,7 +3,7 @@ import z from "zod";
 export const PersonSchema = z.object({
     nombre: z.string({
         required_error: "Es necesario un nombre",
-    }).regex(/^[a-zA-ZáéíóúÁÉÍÓÚ]+$/, "Solo se admiten letras en el nombre!"),
+    }).regex(/^[a-zA-ZáéíóúÁÉÍÓÚ ]+$/, "Solo se admiten letras y/o espacios en el nombre!"),
     apellido_materno: z.string({
         required_error: "Es necesario un apellido materno",
     }).regex(/^[a-zA-ZáéíóúÁÉÍÓÚ]+$/, "Solo se admiten letras en el apellido materno!"),

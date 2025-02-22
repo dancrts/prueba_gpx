@@ -4,7 +4,7 @@
     <people-list (deletePerson)="handleDelete($event)" (updatePerson)="handleUpdate($event)"></people-list>
 </div>
 
-<div (click)="handleFormOutsideClick($event)" [ngClass]="isFormModalOpen ? 'block' :'hidden'"
+<div [ngClass]="isFormModalOpen ? 'block' :'hidden'"
     class="modal flex justify-center items-center fixed inset-0" style="background-color: rgba(0,0,0,0.3);">
     <div class="bg-white p-4 rounded-xl shadow-lg max-w-lg relative">
         <!-- Header Modal -->
@@ -19,13 +19,13 @@
             </button>
         </div>
         <div class="p-4">
-            <people-form></people-form>
+            <people-form (formSubmit)="savePerson($event)" (formClose)="closeFormModal()" [isEdit]="editMode"></people-form>
         </div>
     </div>
 </div>
 
 
-<div (click)="handleDeleteOutsideClick($event)" [ngClass]="isDeleteModalOpen ?'block' :'hidden'"
+<div [ngClass]="isDeleteModalOpen ?'block' :'hidden'"
     class="modal flex justify-center items-center fixed inset-0" style="background-color: rgba(0,0,0,0.3);">
     <div class="bg-white p-4 rounded-xl shadow-lg max-w-lg relative">
         <!-- Header Modal -->
@@ -39,14 +39,6 @@
                 </svg>
             </button>
         </div>
-        <div class="p-4">
-            Está seguro que quiere borrar a esta persona?
-        </div>
-        <div class="p-4 flex justify-end gap-4">
-            <button (click)="closeDeleteModal()"
-                class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-xl">Cancelar</button>
-            <button (click)="closeDeleteModal()"
-                class="bg-red-600 hover:bg-red-900 text-white px-4 py-2 rounded-xl">Borrar</button>
-        </div>
+        <delete-people (cancelDelete)="closeDeleteModal()" (deletePerson)="deletePerson($event)"></delete-people>
     </div>
 </div>

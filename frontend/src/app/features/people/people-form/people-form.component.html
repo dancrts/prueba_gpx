@@ -32,13 +32,19 @@
     </div>
     <div class="col-span-2 flex flex-col gap-2">
         <label htmlFor="telefono">Telefono</label>
-        <input formControlName="telefono" type="number" [ngClass]="isFormInvalid('telefono') ? 'border-red-500 focus:ring-red-600 focus:border-red-600' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'"
+        <input formControlName="telefono" type="text" [ngClass]="isFormInvalid('telefono') ? 'border-red-500 focus:ring-red-600 focus:border-red-600' : 'border-gray-300 focus:ring-blue-500 focus:border-blue-500'"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
         @if (fieldHasError("telefono", "required")) {
             <span class="text-red-500 text-sm">Por favor escriba un numero de telefono</span>
         }
         @if (fieldHasError("telefono", "pattern")) {
             <span class="text-red-500 text-sm">Por favor use solo numeros</span>
+        }
+        @if (fieldHasError("telefono", "minlength")) {
+            <span class="text-red-500 text-sm">El numero de telefono debe tener al menos 10 digitos</span>
+        }
+        @if (fieldHasError("telefono", "maxlength")) {
+            <span class="text-red-500 text-sm">El numero de telefono debe tener hasta 10 digitos</span>
         }
     </div>
     <div class="col-span-4 flex flex-col gap-2">
@@ -56,6 +62,6 @@
         <button (click)="handleFormClose()"
             class="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-xl">Cancelar</button>
         <button [disabled]="peopleForm.invalid" (click)="handleFormSubmit()"
-            class="bg-blue-600 disabled:bg-blue-400 disabled:hover:bg-blue-500 hover:bg-blue-900 text-white px-4 py-2 rounded-xl">Guardar</button>
+            class="bg-blue-600 disabled:bg-blue-400 disabled:hover:bg-blue-500 hover:bg-blue-900 text-white px-4 py-2 rounded-xl">{{isEdit() ? "Editar" : "Guardar"}}</button>
     </div>
 </form>

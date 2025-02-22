@@ -23,7 +23,7 @@
             @for (person of existingPersons; track $index) {
             <tr class="border-b border-gray-200">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                    {{ $index }}
+                    {{ $index + 1}}
                 </th>
                 <td class="px-6 py-4">
                     {{ person.nombre + ' ' + person.apellido_paterno + ' ' + person.apellido_materno }}

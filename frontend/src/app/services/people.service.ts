@@ -20,7 +20,7 @@ export class PeopleService {
         return this.http.get<Person[]>(this.url);
     }
 
-    getPerson(id: string) {
+    getPerson(id: number) {
         return this.http.get<Person>(`${this.url}/${id}`);
     }
 
@@ -29,10 +29,11 @@ export class PeopleService {
     }
 
     updatePerson(person: Person) {
-        return this.http.put<Person>(`${this.url}/${person.id}`, person);
+        console.log("Updating person: ", person);
+        return this.http.put<Person>(`${this.url}/${person.id!}`, person);
     }
 
-    deletePerson(id: string) {
+    deletePerson(id: number) {
         return this.http.delete(`${this.url}/${id}`);
     }
 
