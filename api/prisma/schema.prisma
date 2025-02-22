@@ -13,6 +13,6 @@ model Persona {
     apellido_materno String
     apellido_paterno String
     direccion String
-    telefono Int @unique
+    telefono String @unique
     creado_en DateTime @default(now())
 }
